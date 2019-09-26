@@ -31,6 +31,7 @@ extension ShinyFocusedCollectionView {
 			
 			// TODO: Impliment XY Tilting
 			//  tiltSpotlightOnXYAxisOfCells(with: translation, at: shinyCellViewModel.divider)
+			
 
 		default:
 
@@ -69,6 +70,7 @@ extension ShinyFocusedCollectionView {
 	}
 	
 	// MARK: Cell Tilting
+	
 	func tiltCellsOnXYAxis(with translation: CGPoint, at divider: CGFloat) {
 		
 		let args = makeTiltingOnXYAxis(from: translation, divider: divider)
