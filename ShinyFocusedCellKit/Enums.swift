@@ -23,3 +23,7 @@ public enum RotationDirection {
 public enum ScrollDirection: String, Codable {
     case x, y, left, right, up, down
 }
+
+public enum Axis {
+	case x, y
+}

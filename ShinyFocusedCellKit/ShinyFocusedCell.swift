@@ -11,16 +11,32 @@ import UIKit
 typealias FractionRotation = (fractionPoint: CGPoint, rotationTransform: CATransform3D)
 
 public protocol ShinyFocusedCell: UICollectionViewCell {
-	
-	var dimView: UIView { get set }
-	var spotlight: RadialGradientView { get set }
-	var shinyCellViewModel: ShinyCellViewModel { get set }
+
+	var dimView: UIView! { get set }
+	var spotlight: RadialGradientView! { get set }
 }
 
 extension ShinyFocusedCell {
 	
-	public func setResetDuration(with duration: TimeInterval) {
-		shinyCellViewModel.resetDuration = duration
+	public func setupShinyFocusedCell() {
+
+		if dimView != nil {
+			dimView.layer.opacity = 0.15
+			dimView.backgroundColor = UIColor.black
+		} else {
+			print("DimView was nil")
+		}
+		
+		if spotlight != nil {
+			spotlight.innerColor = UIColor.red
+		}
+
+	}
+	
+	public func setSpotlight(innerColor: UIColor, outerColor: UIColor) {
+		
+		spotlight.innerColor = innerColor
+		spotlight.outerColor = outerColor
 	}
 	
 	internal func animateSpotlightOnXYAxis(fractionPoint: CGPoint) {

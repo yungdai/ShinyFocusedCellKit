@@ -8,27 +8,56 @@
 
 import UIKit
 
-public protocol ShinyFocusedCollectionView: UICollectionView {
+public protocol ShinyFocusedCollectionView: UICollectionViewController {
 	
 	var position: CGFloat { get set }
 	var shinyCellViewModel: ShinyCellViewModel { get set }
 }
 
-public extension ShinyFocusedCollectionView {
+extension ShinyFocusedCollectionView {
 	
-	func resetCells() {
+	/// Required: Use this function inside scrollViewDidScroll(_ scrollView:) in your collectionViewController
+	public func animateSpotlightOnScroll() {
+		
+		let gesture = collectionView.panGestureRecognizer
+		let translation = gesture.translation(in: collectionView)
+		position = translation.x
+		
+		switch gesture.state {
+		case .changed:
+			
+			// Tilt X only for now
+			tiltSpotlightOnXAxisOfCells(at: shinyCellViewModel.divider)
+			
+			// TODO: Impliment XY Tilting
+			//  tiltSpotlightOnXYAxisOfCells(with: translation, at: shinyCellViewModel.divider)
+			
+
+		default:
+
+			print("State: \(gesture.state)")
+			resetSpotlightCells()
+		}
+	}
+	
+	
+	public func setResetDuration(with duration: TimeInterval) {
+		shinyCellViewModel.resetDuration = duration
+	}
+	
+	public func resetCells() {
 		UIView.animate(withDuration: shinyCellViewModel.resetDuration) {
-			self.visibleCells.forEach {
+			self.collectionView.visibleCells.forEach {
 				$0.layer.transform = CATransform3DIdentity
 			}
 		}
 	}
 	
-	func resetSpotlightCells() {
+	internal func resetSpotlightCells() {
 		
 		let viewModel = shinyCellViewModel
 		
-		visibleCells.forEach {
+		self.collectionView.visibleCells.forEach {
 			guard let cell = $0 as? ShinyFocusedCell else { return }
 			UIView.animate(withDuration: viewModel.resetDuration) {
 				
@@ -43,20 +72,26 @@ public extension ShinyFocusedCollectionView {
 	// MARK: Cell Tilting
 	
 	func tiltCellsOnXYAxis(with translation: CGPoint, at divider: CGFloat) {
-
+		
 		let args = makeTiltingOnXYAxis(from: translation, divider: divider)
 		
-		visibleCells.forEach {
+		self.collectionView.visibleCells.forEach {
 			guard let cell = $0 as? ShinyFocusedCell else { return }
 			
 			cell.tilt(rotationTransform: args.rotationTransform)
-        }
+		}
 	}
-	
-	// TODO: Do I need this?
-	//	public func tiltCellOnXAxis(divider: CGFloat) {
-	//
-	//	}
+
+	public func tiltCellsOnXAxis(at divider: CGFloat) {
+		
+		let args = makeTiltingOnXAxis(at: divider)
+		let rotationTransform = args.rotationTransform
+		
+		collectionView.visibleCells.forEach {
+			guard let cell = $0 as? ShinyFocusedCell else { return }
+			cell.tilt(rotationTransform: rotationTransform)
+		}
+	}
 	
 	// MARK: Spotlight Tilting
 	
@@ -67,7 +102,7 @@ public extension ShinyFocusedCollectionView {
 		let fraction = args.fractionPoint.x
 		let rotationTransform = args.rotationTransform
 		
-		visibleCells.forEach {
+		self.collectionView.visibleCells.forEach {
 			guard let cell = $0 as? ShinyFocusedCell else { return }
 			cell.animateSpotlight(fraction: fraction)
 			cell.tilt(rotationTransform: rotationTransform)
@@ -75,18 +110,18 @@ public extension ShinyFocusedCollectionView {
 	}
 	
 	func tiltSpotlightOnXYAxisOfCells(with translation: CGPoint, at divider: CGFloat) {
-
+		
 		let args = makeTiltingOnXAxis(at: divider)
 		let fractionPoint = args.fractionPoint
 		let rotationTransform = args.rotationTransform
 		
-		visibleCells.forEach {
+		self.collectionView.visibleCells.forEach {
 			guard let cell = $0 as? ShinyFocusedCell else { return }
 			cell.animateSpotlightOnXYAxis(fractionPoint: fractionPoint)
 			cell.tilt(rotationTransform: rotationTransform)
 		}
 	}
-
+	
 	private func makeTiltingOnXAxis(at divider: CGFloat) -> FractionRotation {
 		
 		// I want the positioning to set in relation to the cell width to the the possible width of the collectionView
@@ -94,7 +129,7 @@ public extension ShinyFocusedCollectionView {
 		
 		// use the divider to calculate how much less space than the collectionView size do you want to move the cell to affect it.
 		
-		let multiplier = 1.0 / (bounds.width / divider)
+		let multiplier = 1.0 / (self.collectionView.bounds.width / divider)
 		let offset = position * multiplier
 		
 		// make sure that returned faction is number between 0 and 2
@@ -117,7 +152,7 @@ public extension ShinyFocusedCollectionView {
 		return FractionRotation(fractionPoint: fraction, rotationTransform: rotationTransform)
 		
 	}
-
+	
 	private func makeTiltingOnXYAxis(from translation: CGPoint, divider: CGFloat) -> FractionRotation {
 		
 		// I want the positioning to set in relation to the cell width to the the possible width of the collectionView
@@ -125,8 +160,8 @@ public extension ShinyFocusedCollectionView {
 		
 		
 		// use the divider to calculate how much less space than the collectionView size do you want to move the cell to affect it.
-		let multiplierX = 1.0 / (bounds.width / divider)
-		let multiplierY = 1.0 / (bounds.height / divider)
+		let multiplierX = 1.0 / (self.collectionView.bounds.width / divider)
+		let multiplierY = 1.0 / (self.collectionView.bounds.height / divider)
 		
 		let offsetX = translation.x * multiplierX
 		let offsetY = translation.y * multiplierY
@@ -156,5 +191,5 @@ public extension ShinyFocusedCollectionView {
 		
 		return FractionRotation(fractionPoint: fraction, rotationTransform: rotationXY)
 	}
-	
 }
+

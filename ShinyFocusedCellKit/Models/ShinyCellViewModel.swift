@@ -6,10 +6,12 @@
 //  Copyright © 2019 None. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public struct ShinyCellViewModel {
 	
 	public var resetDuration: TimeInterval = 0.2
+	public var divider: CGFloat = 10
+	public init() {}
 }
 
