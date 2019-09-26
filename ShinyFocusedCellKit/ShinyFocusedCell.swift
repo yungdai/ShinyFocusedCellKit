@@ -21,16 +21,18 @@ extension ShinyFocusedCell {
 	public func setupShinyFocusedCell() {
 
 		if dimView != nil {
-			dimView.layer.opacity = 0.15
-			dimView.backgroundColor = UIColor.black
+			dimView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.15)
+			dimView.alpha = 0
 		} else {
 			print("DimView was nil")
 		}
 		
 		if spotlight != nil {
-			spotlight.innerColor = UIColor.red
+			spotlight.alpha = 0
+			spotlight.backgroundColor = UIColor.clear
+		} else {
+			print("Spotlight was nil")
 		}
-
 	}
 	
 	public func setSpotlight(innerColor: UIColor, outerColor: UIColor) {
