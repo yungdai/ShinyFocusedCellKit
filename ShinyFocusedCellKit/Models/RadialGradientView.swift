@@ -16,7 +16,7 @@ public class RadialGradientView: UIView {
     override public func draw(_ rect: CGRect) {
         super.draw(rect)
 
-		let gradientLayer = RadialGradientLayer(rect: rect)
+		let gradientLayer = RadialGradientLayer.makeSpotlightGradient(rect: rect)
 		self.layer.addSublayer(gradientLayer)
 	}
 }
@@ -39,10 +39,11 @@ public class RadialGradientLayer: CAGradientLayer {
 		super.init(coder: coder)
 	}
 	
-	public convenience init(rect: CGRect) {
+	public convenience init(rect: CGRect, name: String) {
 		self.init()
 		bounds = rect
 		setLayerToCenter(of: rect)
+		self.name = name
 	}
 	
 	public override func draw(in ctx: CGContext) {
@@ -66,5 +67,9 @@ public class RadialGradientLayer: CAGradientLayer {
 		if let outerColor = outerColor {
 			self.outerColor = outerColor
 		}
+	}
+	
+	static func makeSpotlightGradient(rect: CGRect) -> CAGradientLayer {
+		return RadialGradientLayer(rect: rect, name: "spotlight")
 	}
 }
