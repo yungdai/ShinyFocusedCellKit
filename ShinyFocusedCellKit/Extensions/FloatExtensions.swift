@@ -31,7 +31,7 @@ extension CGFloat {
     var degreesToRadians: CGFloat { return self * .pi / 180 }
     var radiansToDegrees: CGFloat { return self * 180 / .pi }
     
-    // helper to help you with circle/arc pie charts
+    /// helper to help you with circle/arc pie charts
     static public func convertPercentToRadiansForChart(percent: CGFloat, degreesAtZeroPercent: CGFloat) -> CGFloat {
         return CGFloat((3.6 * percent) + degreesAtZeroPercent).degreesToRadians
     }
