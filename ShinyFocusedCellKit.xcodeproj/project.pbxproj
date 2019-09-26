@@ -10,6 +10,12 @@
 		9FE160E6233CDF9C001915C7 /* ShinyFocusedCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE160DC233CDF9B001915C7 /* ShinyFocusedCellKit.framework */; };
 		9FE160EB233CDF9C001915C7 /* ShinyFocusedCellKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160EA233CDF9C001915C7 /* ShinyFocusedCellKitTests.swift */; };
 		9FE160ED233CDF9C001915C7 /* ShinyFocusedCellKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FE160DF233CDF9B001915C7 /* ShinyFocusedCellKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9FE160F7233CDFD5001915C7 /* ShinyFocusedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160F6233CDFD5001915C7 /* ShinyFocusedCell.swift */; };
+		9FE160FA233CE104001915C7 /* ShinyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160F9233CE104001915C7 /* ShinyCellViewModel.swift */; };
+		9FE160FC233CE899001915C7 /* FloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160FB233CE899001915C7 /* FloatExtensions.swift */; };
+		9FE160FE233CE8C7001915C7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160FD233CE8C7001915C7 /* Enums.swift */; };
+		9FE16100233CF467001915C7 /* ShinyFocusedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160FF233CF467001915C7 /* ShinyFocusedCollectionView.swift */; };
+		9FE16102233CF5EA001915C7 /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE16101233CF5EA001915C7 /* RadialGradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +35,12 @@
 		9FE160E5233CDF9C001915C7 /* ShinyFocusedCellKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShinyFocusedCellKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE160EA233CDF9C001915C7 /* ShinyFocusedCellKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinyFocusedCellKitTests.swift; sourceTree = "<group>"; };
 		9FE160EC233CDF9C001915C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FE160F6233CDFD5001915C7 /* ShinyFocusedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinyFocusedCell.swift; sourceTree = "<group>"; };
+		9FE160F9233CE104001915C7 /* ShinyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinyCellViewModel.swift; sourceTree = "<group>"; };
+		9FE160FB233CE899001915C7 /* FloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtensions.swift; sourceTree = "<group>"; };
+		9FE160FD233CE8C7001915C7 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		9FE160FF233CF467001915C7 /* ShinyFocusedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinyFocusedCollectionView.swift; sourceTree = "<group>"; };
+		9FE16101233CF5EA001915C7 /* RadialGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,11 @@
 			children = (
 				9FE160DF233CDF9B001915C7 /* ShinyFocusedCellKit.h */,
 				9FE160E0233CDF9B001915C7 /* Info.plist */,
+				9FE160F8233CE0F2001915C7 /* Models */,
+				9FE160F6233CDFD5001915C7 /* ShinyFocusedCell.swift */,
+				9FE160FF233CF467001915C7 /* ShinyFocusedCollectionView.swift */,
+				9FE160FB233CE899001915C7 /* FloatExtensions.swift */,
+				9FE160FD233CE8C7001915C7 /* Enums.swift */,
 			);
 			path = ShinyFocusedCellKit;
 			sourceTree = "<group>";
@@ -84,6 +101,15 @@
 				9FE160EC233CDF9C001915C7 /* Info.plist */,
 			);
 			path = ShinyFocusedCellKitTests;
+			sourceTree = "<group>";
+		};
+		9FE160F8233CE0F2001915C7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9FE160F9233CE104001915C7 /* ShinyCellViewModel.swift */,
+				9FE16101233CF5EA001915C7 /* RadialGradientView.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +174,7 @@
 				TargetAttributes = {
 					9FE160DB233CDF9B001915C7 = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 					9FE160E4233CDF9C001915C7 = {
 						CreatedOnToolsVersion = 11.0;
@@ -195,6 +222,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FE160FA233CE104001915C7 /* ShinyCellViewModel.swift in Sources */,
+				9FE16100233CF467001915C7 /* ShinyFocusedCollectionView.swift in Sources */,
+				9FE160F7233CDFD5001915C7 /* ShinyFocusedCell.swift in Sources */,
+				9FE160FE233CE8C7001915C7 /* Enums.swift in Sources */,
+				9FE16102233CF5EA001915C7 /* RadialGradientView.swift in Sources */,
+				9FE160FC233CE899001915C7 /* FloatExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +373,7 @@
 		9FE160F1233CDF9C001915C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = W9YJQYCY2W;
@@ -356,6 +390,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yungdai.ShinyFocusedCellKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +399,7 @@
 		9FE160F2233CDF9C001915C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = W9YJQYCY2W;
@@ -388,6 +424,7 @@
 		9FE160F4233CDF9C001915C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W9YJQYCY2W;
 				INFOPLIST_FILE = ShinyFocusedCellKitTests/Info.plist;
@@ -406,6 +443,7 @@
 		9FE160F5233CDF9C001915C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W9YJQYCY2W;
 				INFOPLIST_FILE = ShinyFocusedCellKitTests/Info.plist;
