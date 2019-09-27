@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F3694E9233E4EED00F7C749 /* RadialGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3694E8233E4EED00F7C749 /* RadialGradientLayer.swift */; };
+		9F3694EB233E4F1300F7C749 /* ShinyFocusLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3694EA233E4F1300F7C749 /* ShinyFocusLayer.swift */; };
 		9FE160E6233CDF9C001915C7 /* ShinyFocusedCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE160DC233CDF9B001915C7 /* ShinyFocusedCellKit.framework */; };
 		9FE160EB233CDF9C001915C7 /* ShinyFocusedCellKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160EA233CDF9C001915C7 /* ShinyFocusedCellKitTests.swift */; };
 		9FE160ED233CDF9C001915C7 /* ShinyFocusedCellKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FE160DF233CDF9B001915C7 /* ShinyFocusedCellKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F3694E8233E4EED00F7C749 /* RadialGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientLayer.swift; sourceTree = "<group>"; };
+		9F3694EA233E4F1300F7C749 /* ShinyFocusLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinyFocusLayer.swift; sourceTree = "<group>"; };
 		9FE160DC233CDF9B001915C7 /* ShinyFocusedCellKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ShinyFocusedCellKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE160DF233CDF9B001915C7 /* ShinyFocusedCellKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShinyFocusedCellKit.h; sourceTree = "<group>"; };
 		9FE160E0233CDF9B001915C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 			children = (
 				9FE160F9233CE104001915C7 /* ShinyCellViewModel.swift */,
 				9FE16101233CF5EA001915C7 /* RadialGradientView.swift */,
+				9F3694E8233E4EED00F7C749 /* RadialGradientLayer.swift */,
+				9F3694EA233E4F1300F7C749 /* ShinyFocusLayer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -151,6 +157,8 @@
 			dependencies = (
 			);
 			name = ShinyFocusedCellKit;
+			packageProductDependencies = (
+			);
 			productName = ShinyFocusedCellKit;
 			productReference = 9FE160DC233CDF9B001915C7 /* ShinyFocusedCellKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -201,6 +209,8 @@
 				Base,
 			);
 			mainGroup = 9FE160D2233CDF9B001915C7;
+			packageReferences = (
+			);
 			productRefGroup = 9FE160DD233CDF9B001915C7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,12 +244,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FE160FA233CE104001915C7 /* ShinyCellViewModel.swift in Sources */,
+				9F3694EB233E4F1300F7C749 /* ShinyFocusLayer.swift in Sources */,
 				9FE16153233D38B7001915C7 /* CALayerExtensions.swift in Sources */,
 				9FE16100233CF467001915C7 /* ShinyFocusedCollectionViewController.swift in Sources */,
 				9FE160F7233CDFD5001915C7 /* ShinyFocusedCell.swift in Sources */,
 				9FE160FE233CE8C7001915C7 /* Enums.swift in Sources */,
 				9FE16102233CF5EA001915C7 /* RadialGradientView.swift in Sources */,
 				9FE160FC233CE899001915C7 /* FloatExtensions.swift in Sources */,
+				9F3694E9233E4EED00F7C749 /* RadialGradientLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +406,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ShinyFocusedCellKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -402,6 +415,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yungdai.ShinyFocusedCellKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -420,6 +434,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ShinyFocusedCellKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,6 +443,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yungdai.ShinyFocusedCellKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
