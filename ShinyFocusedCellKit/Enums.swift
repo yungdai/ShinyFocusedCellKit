@@ -25,5 +25,5 @@ public enum ScrollDirection: String, Codable {
 }
 
 public enum Axis {
-	case x, y
+	case x, y, xy
 }

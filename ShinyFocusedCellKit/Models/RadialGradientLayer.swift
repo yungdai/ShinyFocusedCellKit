@@ -8,10 +8,13 @@
 
 import UIKit
 
+let defaultInnerColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2559315263)
+let defaultOuterColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
+
 public class RadialGradientLayer: CAGradientLayer {
 	
-	public var innerColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.9008819018)
-	public var outerColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
+	public var innerColor: UIColor = defaultInnerColor
+	public var outerColor: UIColor = defaultOuterColor
 	
 	required public override init() {
 		super.init()
@@ -65,71 +68,6 @@ public class RadialGradientLayer: CAGradientLayer {
 		let spotlight = RadialGradientLayer(rect: rect, name: spotlightString)
 
 		spotlight.backgroundColor = UIColor.clear.cgColor
-		spotlight.opacity = 0
 		return spotlight
-	}
-}
-
-public extension RadialGradientLayer {
-	
-	internal func animateSpotlightOnXYAxis(fractionPoint: CGPoint) {
-
-		let halfWidth = bounds.width / 2
-
-		// make sure the the spotlight is fully visible when the cell is tilting
-
-		self.opacity = 1
-
-        var fractionX: CGFloat = 0.0
-        var fractionY: CGFloat = 0.0
-
-        // tilt right
-        if fractionPoint.x < 1 {
-            fractionX =  -(halfWidth * (1 - fractionPoint.x))
-        }
-
-        // tilt left
-        if fractionPoint.x > 1 {
-            fractionX = (halfWidth * (fractionPoint.x  - 1))
-        }
-
-        // tilt up
-        if fractionPoint.y < 1 {
-            fractionY = (halfWidth * (1 - fractionPoint.y))
-        }
-
-        // tilt down
-        if fractionPoint.y > 1 {
-            fractionY = -(halfWidth * (fractionPoint.y  - 1))
-        }
-
-		self.transform = CATransform3DTranslate(self.transform, fractionX, fractionY, 0.0)
-	}
-	
-	internal func animateSpotlightOnXAxis(fraction: CGFloat) {
-
-		let centerX = bounds.width / 2
-
-        // make sure the the spotlight is fully visible when the cell is tilting
-		self.opacity = 1
-
-        // tilt right
-        if fraction < 1 {
-			self.transform = CATransform3DTranslate(self.transform, -(centerX * (1 - fraction)), 0.0, 0.0)
-        }
-
-        // tilt left
-        if fraction > 1 {
-			self.transform = CATransform3DTranslate(self.transform,(centerX * (fraction  - 1)), 0.0, 0.0)
-        }
-	}
-}
-
-extension RadialGradientLayer {
-	
-	internal func resetSpotlight() {
-		
-		self.transform = CATransform3DIdentity
-		self.opacity = 0.0
 	}
 }

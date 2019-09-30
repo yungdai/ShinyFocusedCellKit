@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias FractionRotation = (fractionPoint: CGPoint, rotationTransform: CATransform3D)
+
 public protocol ShinyFocusedCollectionView: UICollectionViewController {
 	
 	var position: CGFloat { get set }
@@ -31,11 +33,8 @@ extension ShinyFocusedCollectionView {
 			
 			// TODO: Impliment XY Tilting
 			//  tiltSpotlightOnXYAxisOfCells(with: translation, at: shinyCellViewModel.divider)
-			
-
 		default:
-
-			print("State: \(gesture.state)")
+			
 			resetSpotlightCells()
 		}
 	}
@@ -110,7 +109,7 @@ extension ShinyFocusedCollectionView {
 		self.collectionView.visibleCells.forEach {
 			guard let cell = $0 as? ShinyFocusedCell else { return }
 
-			cell.spotlight.animateSpolightOnXYAxis(fractionPoint: fractionPoint)
+			cell.spotlight.animateSpotlightOnXYAxis(fractionPoint: fractionPoint)
 			cell.tilt(rotationTransform: rotationTransform)
 		}
 	}

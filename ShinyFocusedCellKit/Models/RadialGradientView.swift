@@ -8,15 +8,10 @@
 
 import UIKit
 
-let dimLayerBackgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.15)
 let spotlightString = "spotlight"
-let dimLayerString = "dimLayer"
 
 public class RadialGradientView: UIView {
 
-    public var innerColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.9008819018)
-    public var outerColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
-	
 	var gradientLayer = RadialGradientLayer()
 
     override public func draw(_ rect: CGRect) {
@@ -24,26 +19,73 @@ public class RadialGradientView: UIView {
 		
 		self.layer.sublayers?.removeAll()
 
-		gradientLayer.setLayerToCenter(of: rect)
-		gradientLayer.bounds = rect
-		gradientLayer.frame = rect
-		gradientLayer.opacity = 0
-		self.clipsToBounds = true
+		gradientLayer.setLayerToCenter(of: bounds)
+		gradientLayer.bounds = bounds
+		gradientLayer.frame = bounds
 		self.layer.addSublayer(gradientLayer)
 	}
 }
 
 public extension RadialGradientView {
 	
-	func animateSpotlightOnXAxis(fraction: CGFloat) {
-		gradientLayer.animateSpotlightOnXAxis(fraction: fraction)
-	}
-	
-	func animateSpolightOnXYAxis(fractionPoint: CGPoint) {
-		gradientLayer.animateSpotlightOnXYAxis(fractionPoint: fractionPoint)
-	}
-	
 	func resetSpotlight() {
-		gradientLayer.resetSpotlight()
+		self.transform = .identity
+		self.alpha = 0
+	}
+	
+	func setSpotlight(innerColor: UIColor?, outerColor: UIColor?) {
+		gradientLayer.set(innerColor: innerColor, outerColor: outerColor)
+	}
+
+	internal func animateSpotlightOnXYAxis(fractionPoint: CGPoint) {
+
+		let halfWidth = bounds.width / 2
+
+		// make sure the the spotlight is fully visible when the cell is tilting
+
+		self.alpha = 1
+
+        var fractionX: CGFloat = 0.0
+        var fractionY: CGFloat = 0.0
+
+        // tilt right
+        if fractionPoint.x < 1 {
+            fractionX =  -(halfWidth * (1 - fractionPoint.x))
+        }
+
+        // tilt left
+        if fractionPoint.x > 1 {
+            fractionX = (halfWidth * (fractionPoint.x  - 1))
+        }
+
+        // tilt up
+        if fractionPoint.y < 1 {
+            fractionY = (halfWidth * (1 - fractionPoint.y))
+        }
+
+        // tilt down
+        if fractionPoint.y > 1 {
+            fractionY = -(halfWidth * (fractionPoint.y  - 1))
+        }
+
+		self.transform = CGAffineTransform.init(translationX: fractionX, y: fractionY)
+	}
+	
+	internal func animateSpotlightOnXAxis(fraction: CGFloat) {
+
+		let centerX = frame.width / 2
+
+        // make sure the the spotlight is fully visible when the cell is tilting
+		self.alpha = 1
+
+        // tilt right
+        if fraction < 1 {
+			self.transform = CGAffineTransform.init(translationX: -(centerX * (1 - fraction)), y: 0.0)
+        }
+
+        // tilt left
+        if fraction > 1 {
+			self.transform =  CGAffineTransform.init(translationX: (centerX * (fraction  - 1)), y: 0.0)
+        }
 	}
 }

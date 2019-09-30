@@ -12,5 +12,6 @@ public struct ShinyCellViewModel {
 	
 	public var resetDuration: TimeInterval = 0.2
 	public var divider: CGFloat = 10
+	public var axis: Axis = .x
 	public init() {}
 }
