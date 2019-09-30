@@ -1,6 +1,6 @@
 //
 //  ShinyFocusedCollectionView.swift
-//  ShinyFocusedCellKit
+//  ShinyFocusableKit
 //
 //  Created by Yung Dai on 2019-09-26.
 //  Copyright © 2019 None. All rights reserved.
@@ -58,7 +58,7 @@ extension ShinyFocusedCollectionView {
 		let viewModel = shinyCellViewModel
 		
 		self.collectionView.visibleCells.forEach {
-			guard let cell = $0 as? ShinyFocusedCell else { return }
+			guard let cell = $0 as? ShinyFocusable else { return }
 
 			UIView.animate(withDuration: viewModel.resetDuration, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.7, options: .curveEaseInOut, animations: {
 
@@ -74,7 +74,8 @@ extension ShinyFocusedCollectionView {
 		let args = makeTiltingOnXYAxis(from: translation, divider: divider)
 		
 		self.collectionView.visibleCells.forEach {
-			guard let cell = $0 as? ShinyFocusedCell else { return }
+			guard let cell = $0 as? ShinyFocusable else { return }
+
 			
 			cell.tilt(rotationTransform: args.rotationTransform)
 		}
@@ -86,7 +87,7 @@ extension ShinyFocusedCollectionView {
 		let rotationTransform = args.rotationTransform
 		
 		collectionView.visibleCells.forEach {
-			guard let cell = $0 as? ShinyFocusedCell else { return }
+			guard let cell = $0 as? ShinyFocusable else { return }
 			cell.tilt(rotationTransform: rotationTransform)
 		}
 	}
@@ -101,7 +102,7 @@ extension ShinyFocusedCollectionView {
 		let rotationTransform = args.rotationTransform
 		
 		self.collectionView.visibleCells.forEach {
-			guard let cell = $0 as? ShinyFocusedCell else { return }
+			guard let cell = $0 as? ShinyFocusable else { return }
 
 			cell.spotlight.animateSpotlightOnXAxis(fraction: fraction)
 			cell.tilt(rotationTransform: rotationTransform)
@@ -115,7 +116,7 @@ extension ShinyFocusedCollectionView {
 		let rotationTransform = args.rotationTransform
 		
 		self.collectionView.visibleCells.forEach {
-			guard let cell = $0 as? ShinyFocusedCell else { return }
+			guard let cell = $0 as? ShinyFocusable else { return }
 
 			cell.spotlight.animateSpotlightOnXYAxis(fractionPoint: fractionPoint)
 			cell.tilt(rotationTransform: rotationTransform)

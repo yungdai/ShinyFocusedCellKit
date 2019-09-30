@@ -9,9 +9,9 @@
 import UIKit
 
 
-open class ShinyFocusedCell: UICollectionViewCell {
+open class ShinyFocusedCell: UICollectionViewCell, ShinyFocusable {
 	
-	var spotlight = RadialGradientView()
+	public var spotlight = RadialGradientView()
 
 	public override func draw(_ rect: CGRect) {
 		super.draw(rect)
@@ -19,15 +19,9 @@ open class ShinyFocusedCell: UICollectionViewCell {
 		spotlight.removeFromSuperview()
 		spotlight.bounds = rect
 		spotlight.frame = rect
-		
 		addSubview(spotlight)
 		bringSubviewToFront(spotlight)
 		self.clipsToBounds = true
 	}
 }
 
-extension ShinyFocusedCell {
-	internal func tilt(rotationTransform: CATransform3D) {
-		layer.transform = rotationTransform
-	}
-}

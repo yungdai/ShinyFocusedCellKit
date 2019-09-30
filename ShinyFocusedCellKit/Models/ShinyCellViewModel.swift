@@ -17,7 +17,7 @@ public struct ShinyCellViewModel {
 	public var axis: Axis = .x
 	
 	/// Rotation percentage of Pi
-	public var rotation: CGFloat = 0.1
+	public var rotation: CGFloat = 0.3
 	
 	public var startingAlpha: CGFloat = 1.0
 	public init() {}
