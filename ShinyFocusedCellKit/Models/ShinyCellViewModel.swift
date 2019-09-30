@@ -14,4 +14,3 @@ public struct ShinyCellViewModel {
 	public var divider: CGFloat = 10
 	public init() {}
 }
-

@@ -45,32 +45,23 @@ extension ShinyFocusedCollectionView {
 		shinyCellViewModel.resetDuration = duration
 	}
 	
-	public func resetCells() {
-		UIView.animate(withDuration: shinyCellViewModel.resetDuration) {
-			self.collectionView.visibleCells.forEach {
-				$0.layer.transform = CATransform3DIdentity
-			}
-		}
-	}
-	
-	internal func resetSpotlightCells() {
+
+	public func resetSpotlightCells() {
 		
 		let viewModel = shinyCellViewModel
 		
 		self.collectionView.visibleCells.forEach {
 			guard let cell = $0 as? ShinyFocusedCell else { return }
-			UIView.animate(withDuration: viewModel.resetDuration) {
-				
-				cell.dimView.alpha = 0
-				cell.spotlight.alpha = 0
-				cell.spotlight.transform = .identity
+
+			UIView.animate(withDuration: viewModel.resetDuration, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.7, options: .curveEaseInOut, animations: {
+
+				cell.spotlight.resetSpotlight()
 				cell.layer.transform = CATransform3DIdentity
-			}
+			})
 		}
 	}
 	
 	// MARK: Cell Tilting
-	
 	func tiltCellsOnXYAxis(with translation: CGPoint, at divider: CGFloat) {
 		
 		let args = makeTiltingOnXYAxis(from: translation, divider: divider)
@@ -94,7 +85,7 @@ extension ShinyFocusedCollectionView {
 	}
 	
 	// MARK: Spotlight Tilting
-	
+
 	/// Animate the spottlight while tiltings all cells
 	func tiltSpotlightOnXAxisOfCells(at divider: CGFloat) {
 		
@@ -104,7 +95,8 @@ extension ShinyFocusedCollectionView {
 		
 		self.collectionView.visibleCells.forEach {
 			guard let cell = $0 as? ShinyFocusedCell else { return }
-			cell.animateSpotlight(fraction: fraction)
+
+			cell.spotlight.animateSpotlightOnXAxis(fraction: fraction)
 			cell.tilt(rotationTransform: rotationTransform)
 		}
 	}
@@ -117,7 +109,8 @@ extension ShinyFocusedCollectionView {
 		
 		self.collectionView.visibleCells.forEach {
 			guard let cell = $0 as? ShinyFocusedCell else { return }
-			cell.animateSpotlightOnXYAxis(fractionPoint: fractionPoint)
+
+			cell.spotlight.animateSpolightOnXYAxis(fractionPoint: fractionPoint)
 			cell.tilt(rotationTransform: rotationTransform)
 		}
 	}
@@ -133,8 +126,7 @@ extension ShinyFocusedCollectionView {
 		let offset = position * multiplier
 		
 		// make sure that returned faction is number between 0 and 2
-		
-		let xFraction = CGFloat.returnNumberBetween(minimum: 0 , maximum: 2, inputValue: 1.0 - offset)
+		let xFraction = CGFloat.returnNumberBetween(minimum: 0.5 , maximum: 1.5, inputValue: 1.0 - offset)
 		let fraction = CGPoint(x: xFraction, y: 0)
 		
 		// transformation code
