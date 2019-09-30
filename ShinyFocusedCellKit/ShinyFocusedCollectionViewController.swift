@@ -25,16 +25,24 @@ extension ShinyFocusedCollectionView {
 		let translation = gesture.translation(in: collectionView)
 		position = translation.x
 		
+		let axis = shinyCellViewModel.axis
+		
 		switch gesture.state {
 		case .changed:
 			
-			// Tilt X only for now
-			tiltSpotlightOnXAxisOfCells(at: shinyCellViewModel.divider)
-			
-			// TODO: Impliment XY Tilting
-			//  tiltSpotlightOnXYAxisOfCells(with: translation, at: shinyCellViewModel.divider)
+			switch axis {
+				
+			case .x:
+				tiltSpotlightOnXAxisOfCells(at: shinyCellViewModel.divider)
+				
+			case .xy:
+				tiltSpotlightOnXYAxisOfCells(with: translation, at: shinyCellViewModel.divider)
+				
+			default:
+				tiltSpotlightOnXYAxisOfCells(with: translation, at: shinyCellViewModel.divider)
+			}
+
 		default:
-			
 			resetSpotlightCells()
 		}
 	}
@@ -61,7 +69,7 @@ extension ShinyFocusedCollectionView {
 	}
 	
 	// MARK: Cell Tilting
-	func tiltCellsOnXYAxis(with translation: CGPoint, at divider: CGFloat) {
+	public func tiltCellsOnXYAxis(with translation: CGPoint, at divider: CGFloat) {
 		
 		let args = makeTiltingOnXYAxis(from: translation, divider: divider)
 		
@@ -117,6 +125,7 @@ extension ShinyFocusedCollectionView {
 	private func makeTiltingOnXAxis(at divider: CGFloat) -> FractionRotation {
 		
 		// I want the positioning to set in relation to the cell width to the the possible width of the collectionView
+		
 		// this creates less travel distance to maximise the rotation
 		
 		// use the divider to calculate how much less space than the collectionView size do you want to move the cell to affect it.
@@ -126,6 +135,7 @@ extension ShinyFocusedCollectionView {
 		
 		// make sure that returned faction is number between 0 and 2
 		let xFraction = CGFloat.returnNumberBetween(minimum: 0.5 , maximum: 1.5, inputValue: 1.0 - offset)
+		
 		let fraction = CGPoint(x: xFraction, y: 0)
 		
 		// transformation code
@@ -134,14 +144,13 @@ extension ShinyFocusedCollectionView {
 		// perpective calculation using the m34 matrix
 		identity.m34 = -1.0 / 1000.0
 		
-		// get the angle, it will be 10% of pi
-		let angle = Double(1.0 - fraction.x) * (Double.pi * 0.1)
+		// get the angle, it will be rotation % of pi
+		let angle = (1.0 - fraction.x) * (CGFloat.pi * shinyCellViewModel.rotation)
 		
 		// rotation along the Y Axis.  The cell layer archorPoint is already CGPoint(x: 0.5, y:0.5)
-		let rotationTransform = CATransform3DRotate(identity, CGFloat(angle), 0, 1.0, 0)
+		let rotationTransform = CATransform3DRotate(identity, angle, 0, 1.0, 0)
 		
 		return FractionRotation(fractionPoint: fraction, rotationTransform: rotationTransform)
-		
 	}
 	
 	private func makeTiltingOnXYAxis(from translation: CGPoint, divider: CGFloat) -> FractionRotation {
@@ -170,17 +179,30 @@ extension ShinyFocusedCollectionView {
 		identity.m34 = -1.0 / 1000.0
 		
 		// get the angle, it will be 10% of pi
-		let angleX = Double(1.0 - fractionX) * (Double.pi * 0.1)
-		let angleY = Double(1.0 - fractionY) * (Double.pi * 0.1)
+		let angleX = (1.0 - fractionX) * (CGFloat.pi * shinyCellViewModel.rotation)
+		let angleY = (1.0 - fractionY) * (CGFloat.pi * shinyCellViewModel.rotation)
 		
 		// rotation along the Y Axis.  The cell layer archorPoint is already CGPoint(x: 0.5, y:0.5)
-		let rotationX = CATransform3DRotate(identity, CGFloat(angleX), 0, 1.0, 0)
-		let rotationY = CATransform3DRotate(identity, CGFloat(angleY), 1.0, 0, 0)
+		let rotationX = CATransform3DRotate(identity, angleX, 0, 1.0, 0)
+		let rotationY = CATransform3DRotate(identity, angleY, 1.0, 0, 0)
 		
 		// concactinate the two rotations together
 		let rotationXY = CATransform3DConcat(rotationX, rotationY)
 		
 		return FractionRotation(fractionPoint: fraction, rotationTransform: rotationXY)
 	}
+	
+	public func setRotationPercentage(_ rotation: CGFloat) {
+		shinyCellViewModel.rotation = rotation
+	}
+	
+	public func setAxis(_ axis: Axis) {
+		shinyCellViewModel.axis = axis
+	}
+	
+	public func setResetDuration(_ timeInterval: TimeInterval) {
+		shinyCellViewModel.resetDuration = timeInterval
+	}
 }
+
 

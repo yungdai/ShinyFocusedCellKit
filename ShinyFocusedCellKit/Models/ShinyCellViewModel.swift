@@ -10,8 +10,13 @@ import UIKit
 
 public struct ShinyCellViewModel {
 	
-	public var resetDuration: TimeInterval = 0.2
-	public var divider: CGFloat = 10
+	public var resetDuration: TimeInterval = 0.5
+	public var divider: CGFloat = 2
+	
+	/// Axis you would prefer  the rotation to happen on
 	public var axis: Axis = .x
+	
+	/// Rotation percentage of Pi
+	public var rotation: CGFloat = 0.1
 	public init() {}
 }
