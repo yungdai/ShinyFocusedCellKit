@@ -191,17 +191,10 @@ extension ShinyFocusedCollectionView {
 		
 		return FractionRotation(fractionPoint: fraction, rotationTransform: rotationXY)
 	}
-	
-	public func setRotationPercentage(_ rotation: CGFloat) {
-		shinyCellViewModel.rotation = rotation
-	}
-	
-	public func setAxis(_ axis: Axis) {
-		shinyCellViewModel.axis = axis
-	}
-	
-	public func setResetDuration(_ timeInterval: TimeInterval) {
-		shinyCellViewModel.resetDuration = timeInterval
+
+	public func configureShinyCellModel(resetDuration: TimeInterval?, divider: CGFloat?, axis: Axis?, rotation: CGFloat?, startingAlpha: CGFloat?) {
+		
+		shinyCellViewModel.set(resetDuration: resetDuration, divider: divider, axis: axis, rotation: rotation, startingAlpha: startingAlpha)
 	}
 }
 

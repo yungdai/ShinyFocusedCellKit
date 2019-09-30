@@ -30,7 +30,6 @@ public extension RadialGradientView {
 	
 	func resetSpotlight() {
 		self.transform = .identity
-		self.alpha = 0
 	}
 	
 	func setSpotlight(innerColor: UIColor?, outerColor: UIColor?) {
