@@ -37,9 +37,7 @@ public class RadialGradientLayer: CAGradientLayer {
 	}
 	
 	public override func draw(in ctx: CGContext) {
-		
-		self.backgroundColor = UIColor.clear.cgColor
-		
+
 		// save context
 		ctx.saveGState()
 
@@ -63,11 +61,9 @@ public class RadialGradientLayer: CAGradientLayer {
 		}
 	}
 	
+    /// Creates a
 	static func makeSpotlightGradient(rect: CGRect) -> RadialGradientLayer {
-
 		let spotlight = RadialGradientLayer(rect: rect, name: spotlightString)
-
-		spotlight.backgroundColor = UIColor.clear.cgColor
 		return spotlight
 	}
 }

@@ -27,7 +27,7 @@ public extension ShinyFocusable {
 		self.clipsToBounds = true
 	}
 	
-	// tilt the cell with a CATransform3d Rotation
+	/// tilt the cell with a CATransform3d Rotation
 	func tilt(rotationTransform: CATransform3D) {
 		layer.transform = rotationTransform
 	}

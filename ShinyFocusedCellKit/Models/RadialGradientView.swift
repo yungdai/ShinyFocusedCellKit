@@ -18,7 +18,6 @@ public class RadialGradientView: UIView {
         super.draw(rect)
 		
 		self.layer.sublayers?.removeAll()
-
 		gradientLayer.setLayerToCenter(of: bounds)
 		gradientLayer.bounds = bounds
 		gradientLayer.frame = bounds
@@ -38,8 +37,8 @@ public extension RadialGradientView {
 
 	internal func animateSpotlightOnXYAxis(fractionPoint: CGPoint) {
 
-		let width = bounds.width
-		let height = bounds.height
+        let width = bounds.width / 1.5
+        let height = bounds.height / 1.5
 
 		// make sure the the spotlight is fully visible when the cell is tilting
 		self.alpha = 1
@@ -72,7 +71,7 @@ public extension RadialGradientView {
 	
 	internal func animateSpotlightOnXAxis(fraction: CGFloat) {
 
-		let width = frame.width
+        let width = frame.width / 1.5
 
         // make sure the the spotlight is fully visible when the cell is tilting
 		self.alpha = 1

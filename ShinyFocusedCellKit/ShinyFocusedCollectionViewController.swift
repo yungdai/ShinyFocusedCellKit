@@ -29,9 +29,7 @@ extension ShinyFocusedCollectionView {
 		
 		switch gesture.state {
 		case .changed:
-			
 			switch axis {
-				
 			case .x:
 				tiltSpotlightOnXAxisOfCells(at: shinyCellViewModel.divider)
 				
@@ -41,7 +39,6 @@ extension ShinyFocusedCollectionView {
 			default:
 				tiltSpotlightOnXYAxisOfCells(with: translation, at: shinyCellViewModel.divider)
 			}
-
 		default:
 			resetSpotlightCells()
 		}
