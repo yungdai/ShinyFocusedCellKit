@@ -7,6 +7,7 @@ Required:
 <b>UICollectionViewCell:</b>
 
 - Adopt ShinyFocusable to your UICollectionViewCell
+- Adopt var spotlight: RadialGradientView = RadialGradientView()
 
 ```
 class CustomCollectionViewCell: UICollectionViewCell, ShinyFocusable {
@@ -16,9 +17,9 @@ class CustomCollectionViewCell: UICollectionViewCell, ShinyFocusable {
 
 <b>UICollectionViewController:</b>
 
-- Adopt ShinyFocusedCollectionView protocol to your UICollectionViewController
-- Add var positoin: CGFloat = 0.0
-- Add var shinyCellViewModel: ShinyCellViewModel = ShinyCellViewModel()
+- Adopt ShinyFocusableCollectionViewController protocol to your UICollectionViewController
+- Adopt var positoin: CGFloat = 0.0
+- Adopt var shinyCellViewModel: ShinyCellViewModel = ShinyCellViewModel()
 
 Add the following functions into these delegate functions
 
