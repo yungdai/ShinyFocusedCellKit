@@ -38,16 +38,11 @@ public class RadialGradientLayer: CAGradientLayer {
 	
 	public override func draw(in ctx: CGContext) {
 
-		// save context
-		ctx.saveGState()
-
 		let colors = [innerColor.cgColor, outerColor.cgColor] as CFArray
 		let endRadius = min(bounds.width, bounds.height) / 2
 		let center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
 		let gradient = CGGradient(colorsSpace: nil, colors: colors, locations: nil)
 		ctx.drawRadialGradient(gradient!, startCenter: center, startRadius: 0.0, endCenter: center, endRadius: endRadius, options: .drawsBeforeStartLocation)
-		
-		ctx.restoreGState()
 	}
 	
 	public func set(innerColor: UIColor?, outerColor: UIColor?)  {
