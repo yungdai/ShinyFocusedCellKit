@@ -1,5 +1,5 @@
 //
-//  ShinyFocusedCollectionView.swift
+//  ShinyFocusableCollectionViewController.swift
 //  ShinyFocusableKit
 //
 //  Created by Yung Dai on 2019-09-26.
@@ -10,13 +10,13 @@ import UIKit
 
 typealias FractionRotation = (fractionPoint: CGPoint, rotationTransform: CATransform3D)
 
-public protocol ShinyFocusedCollectionView: UICollectionViewController {
+public protocol ShinyFocusableCollectionViewController: UICollectionViewController {
 	
 	var position: CGFloat { get set }
 	var shinyCellViewModel: ShinyCellViewModel { get set }
 }
 
-extension ShinyFocusedCollectionView {
+extension ShinyFocusableCollectionViewController {
 	
 	/// Required: Use this function inside scrollViewDidScroll(_ scrollView:) in your collectionViewController
 	public func animateSpotlightOnScroll() {
@@ -44,12 +44,11 @@ extension ShinyFocusedCollectionView {
 		}
 	}
 	
-	
 	public func setResetDuration(with duration: TimeInterval) {
 		shinyCellViewModel.resetDuration = duration
 	}
-	
 
+	/// Impliment when you need the ShinyFocusable Cell needs to reset the spotlight
 	public func resetSpotlightCells() {
 		
 		let viewModel = shinyCellViewModel
@@ -72,7 +71,6 @@ extension ShinyFocusedCollectionView {
 		
 		self.collectionView.visibleCells.forEach {
 			guard let cell = $0 as? ShinyFocusable else { return }
-
 			
 			cell.tilt(rotationTransform: args.rotationTransform)
 		}
@@ -85,13 +83,14 @@ extension ShinyFocusedCollectionView {
 		
 		collectionView.visibleCells.forEach {
 			guard let cell = $0 as? ShinyFocusable else { return }
+			
 			cell.tilt(rotationTransform: rotationTransform)
 		}
 	}
 	
 	// MARK: Spotlight Tilting
 
-	/// Animate the spottlight while tiltings all cells
+	/// Animate the spotlight and tilting on the X Axis
 	func tiltSpotlightOnXAxisOfCells(at divider: CGFloat) {
 		
 		let args = makeTiltingOnXAxis(at: divider)
@@ -106,6 +105,7 @@ extension ShinyFocusedCollectionView {
 		}
 	}
 	
+	/// Animate the spotlight and tilting on the XY Axis
 	func tiltSpotlightOnXYAxisOfCells(with translation: CGPoint, at divider: CGFloat) {
 		
 		let args = makeTiltingOnXAxis(at: divider)
@@ -120,14 +120,13 @@ extension ShinyFocusedCollectionView {
 		}
 	}
 	
+	// MARK: Utilities
 	private func makeTiltingOnXAxis(at divider: CGFloat) -> FractionRotation {
 		
 		// I want the positioning to set in relation to the cell width to the the possible width of the collectionView
-		
 		// this creates less travel distance to maximise the rotation
 		
 		// use the divider to calculate how much less space than the collectionView size do you want to move the cell to affect it.
-		
 		let multiplier = 1.0 / (self.collectionView.bounds.width / divider)
 		let offset = position * multiplier
 		
@@ -155,8 +154,7 @@ extension ShinyFocusedCollectionView {
 		
 		// I want the positioning to set in relation to the cell width to the the possible width of the collectionView
 		// this creates less travel distance to maximise the rotation
-		
-		
+
 		// use the divider to calculate how much less space than the collectionView size do you want to move the cell to affect it.
 		let multiplierX = 1.0 / (self.collectionView.bounds.width / divider)
 		let multiplierY = 1.0 / (self.collectionView.bounds.height / divider)
@@ -191,7 +189,6 @@ extension ShinyFocusedCollectionView {
 	}
 
 	public func configureShinyCellModel(resetDuration: TimeInterval?, divider: CGFloat?, axis: Axis?, rotation: CGFloat?, startingAlpha: CGFloat?) {
-		
 		shinyCellViewModel.set(resetDuration: resetDuration, divider: divider, axis: axis, rotation: rotation, startingAlpha: startingAlpha)
 	}
 }
