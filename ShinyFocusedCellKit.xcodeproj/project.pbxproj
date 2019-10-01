@@ -16,10 +16,10 @@
 		9FE160FA233CE104001915C7 /* ShinyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160F9233CE104001915C7 /* ShinyCellViewModel.swift */; };
 		9FE160FC233CE899001915C7 /* FloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160FB233CE899001915C7 /* FloatExtensions.swift */; };
 		9FE160FE233CE8C7001915C7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160FD233CE8C7001915C7 /* Enums.swift */; };
-		9FE16100233CF467001915C7 /* ShinyFocusedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160FF233CF467001915C7 /* ShinyFocusedCollectionViewController.swift */; };
+		9FE16100233CF467001915C7 /* ShinyFocusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE160FF233CF467001915C7 /* ShinyFocusable.swift */; };
 		9FE16102233CF5EA001915C7 /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE16101233CF5EA001915C7 /* RadialGradientView.swift */; };
 		9FE16153233D38B7001915C7 /* CALayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE16152233D38B7001915C7 /* CALayerExtensions.swift */; };
-		9FF228372342829F00685488 /* ShinyFocusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF228362342829F00685488 /* ShinyFocusable.swift */; };
+		9FF228372342829F00685488 /* ShinyFocusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF228362342829F00685488 /* ShinyFocusableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +45,10 @@
 		9FE160F9233CE104001915C7 /* ShinyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinyCellViewModel.swift; sourceTree = "<group>"; };
 		9FE160FB233CE899001915C7 /* FloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtensions.swift; sourceTree = "<group>"; };
 		9FE160FD233CE8C7001915C7 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		9FE160FF233CF467001915C7 /* ShinyFocusedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinyFocusedCollectionViewController.swift; sourceTree = "<group>"; };
+		9FE160FF233CF467001915C7 /* ShinyFocusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinyFocusable.swift; sourceTree = "<group>"; };
 		9FE16101233CF5EA001915C7 /* RadialGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		9FE16152233D38B7001915C7 /* CALayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtensions.swift; sourceTree = "<group>"; };
-		9FF228362342829F00685488 /* ShinyFocusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinyFocusable.swift; sourceTree = "<group>"; };
+		9FF228362342829F00685488 /* ShinyFocusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinyFocusableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,12 +94,9 @@
 			children = (
 				9FE160DF233CDF9B001915C7 /* ShinyFocusedCellKit.h */,
 				9FE160E0233CDF9B001915C7 /* Info.plist */,
-				9FE160F8233CE0F2001915C7 /* Models */,
-				9FE160F6233CDFD5001915C7 /* ShinyFocusedCell.swift */,
-				9FE160FF233CF467001915C7 /* ShinyFocusedCollectionViewController.swift */,
-				9FE16151233D389D001915C7 /* Extensions */,
-				9FE160FD233CE8C7001915C7 /* Enums.swift */,
 				9FF2283A23428B7500685488 /* Protocol */,
+				9FE160F8233CE0F2001915C7 /* Models */,
+				9FE16151233D389D001915C7 /* Extensions */,
 			);
 			path = ShinyFocusedCellKit;
 			sourceTree = "<group>";
@@ -116,6 +113,7 @@
 		9FE160F8233CE0F2001915C7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9FE160F6233CDFD5001915C7 /* ShinyFocusedCell.swift */,
 				9FE160F9233CE104001915C7 /* ShinyCellViewModel.swift */,
 				9FE16101233CF5EA001915C7 /* RadialGradientView.swift */,
 				9F3694E8233E4EED00F7C749 /* RadialGradientLayer.swift */,
@@ -126,6 +124,7 @@
 		9FE16151233D389D001915C7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9FE160FD233CE8C7001915C7 /* Enums.swift */,
 				9FE160FB233CE899001915C7 /* FloatExtensions.swift */,
 				9FE16152233D38B7001915C7 /* CALayerExtensions.swift */,
 			);
@@ -135,7 +134,8 @@
 		9FF2283A23428B7500685488 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				9FF228362342829F00685488 /* ShinyFocusable.swift */,
+				9FE160FF233CF467001915C7 /* ShinyFocusable.swift */,
+				9FF228362342829F00685488 /* ShinyFocusableCell.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -257,11 +257,11 @@
 			files = (
 				9FE160FA233CE104001915C7 /* ShinyCellViewModel.swift in Sources */,
 				9FE16153233D38B7001915C7 /* CALayerExtensions.swift in Sources */,
-				9FE16100233CF467001915C7 /* ShinyFocusedCollectionViewController.swift in Sources */,
+				9FE16100233CF467001915C7 /* ShinyFocusable.swift in Sources */,
 				9FE160F7233CDFD5001915C7 /* ShinyFocusedCell.swift in Sources */,
 				9FE160FE233CE8C7001915C7 /* Enums.swift in Sources */,
 				9FE16102233CF5EA001915C7 /* RadialGradientView.swift in Sources */,
-				9FF228372342829F00685488 /* ShinyFocusable.swift in Sources */,
+				9FF228372342829F00685488 /* ShinyFocusableCell.swift in Sources */,
 				9FE160FC233CE899001915C7 /* FloatExtensions.swift in Sources */,
 				9F3694E9233E4EED00F7C749 /* RadialGradientLayer.swift in Sources */,
 			);

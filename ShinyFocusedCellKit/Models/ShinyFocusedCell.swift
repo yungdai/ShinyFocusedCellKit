@@ -9,19 +9,13 @@
 import UIKit
 
 
-open class ShinyFocusedCell: UICollectionViewCell, ShinyFocusable {
+open class ShinyFocusedCell: UICollectionViewCell, ShinyFocusableCell {
 	
 	public var spotlight = RadialGradientView()
 
 	public override func draw(_ rect: CGRect) {
 		super.draw(rect)
-		
-		spotlight.removeFromSuperview()
-		spotlight.bounds = rect
-		spotlight.frame = rect
-		addSubview(spotlight)
-		bringSubviewToFront(spotlight)
-		self.clipsToBounds = true
+		setupCell(rect: rect)
 	}
 }
 
